@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Quote Generator</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Quote Generator</h1>
 
-    <div class="quote-box" id="quoteBox">
-      <p id="quoteText">Loading quote...</p>
-      <p id="author"></p>
+<div class="container">
+    <h2>Random Quote Generator</h2>
+
+    <select id="categoryFilter">
+        <option value="all">All</option>
+        <option value="motivation">Motivation</option>
+        <option value="life">Life</option>
+        <option value="love">Love</option>
+    </select>
+
+    <div class="quote-box">
+        <p id="quoteText">Click “New Quote”</p>
+        <span id="categoryTag" class="tag"></span>
     </div>
 
-    <div class="btns">
-      <button id="newQuoteBtn"> New Quote</button>
-      <button id="tweetBtn"> Tweet</button>
-    </div>
-  </div>
+    <button id="newQuoteBtn">New Quote</button>
+    <button id="copyBtn">Copy</button>
+    <button id="favBtn">Add to Favorites</button>
 
-  <script src="script.js"></script>
+    <h3>Favorites</h3>
+    <ul id="favList"></ul>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
