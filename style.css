@@ -1,68 +1,55 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-  height: 100vh;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 20px;
+  background: #f4f4f4;
 }
 
 .container {
+  width: 350px;
   background: white;
-  padding: 40px 50px;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  width: 90%;
-  max-width: 500px;
-  animation: fadeIn 1s ease;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-h1 {
-  color: #333;
-  font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
+h2, h3 { text-align: center; }
+
 .quote-box {
-  min-height: 120px;
-  margin-bottom: 25px;
+  background: #eee;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 6px;
 }
 
-#quoteText {
-  font-size: 1.4rem;
-  font-style: italic;
-  color: #222;
-  margin-bottom: 15px;
-  animation: fadeIn 0.8s ease;
-}
-
-#author {
-  color: #666;
-  font-weight: 600;
-  font-size: 1rem;
-  animation: fadeIn 1s ease;
-}
-
-.btns {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+.tag {
+  background: #333;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
 }
 
 button {
-  background: linear-gradient(90deg, #ff6a88, #ff99ac);
-  color: white;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
   border: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-size: 1rem;
+  background: #222;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover { background: #000; }
+
+ul li {
+  background: #ddd;
+  padding: 6px;
+  margin: 5px 0;
+  border-radius: 5px;
+}  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
