@@ -1,40 +1,56 @@
+const quotes = [
+  { text: "Believe in yourself.", category: "motivation" },
+  { text: "Life is what you make it.", category: "life" },
+  { text: "Love all, trust a few.", category: "love" },
+  { text: "Success is no accident.", category: "motivation" },
+  { text: "Life is short, smile often.", category: "life" }
+];
+
 const quoteText = document.getElementById("quoteText");
-const author = document.getElementById("author");
-const newQuoteBtn = document.getElementById("newQuoteBtn");
-const tweetBtn = document.getElementById("tweetBtn");
+const categoryTag = document.getElementById("categoryTag");
+const categoryFilter = document.getElementById("categoryFilter");
+const favList = document.getElementById("favList");
 
-// Fetch new quote
-async function getQuote() {
-  quoteText.innerText = "Loading...";
-  author.innerText = "";
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-  try {
-    const response = await fetch("https://api.quotable.io/random");
-    const data = await response.json();
-    quoteText.innerText = `"${data.content}"`;
-    author.innerText = `— ${data.author}`;
-  } catch (error) {
-    quoteText.innerText = "Oops! Couldn't fetch a quote 😢";
-    author.innerText = "";
-  }
+function showQuote() {
+  const filter = categoryFilter.value;
 
-  // Animation refresh
-  quoteText.style.animation = "none";
-  author.style.animation = "none";
-  setTimeout(() => {
-    quoteText.style.animation = "fadeIn 1s ease";
-    author.style.animation = "fadeIn 1s ease";
-  }, 100);
+  let filteredQuotes = filter === "all" 
+      ? quotes 
+      : quotes.filter(q => q.category === filter);
+
+  const random = filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
+
+  quoteText.textContent = random.text;
+  categoryTag.textContent = random.category;
 }
 
-// Tweet current quote
-function tweetQuote() {
-  const quote = quoteText.innerText;
-  const authorName = author.innerText;
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quote + " " + authorName)}`;
-  window.open(tweetUrl, "_blank");
+document.getElementById("newQuoteBtn").onclick = showQuote;
+
+document.getElementById("copyBtn").onclick = () => {
+  navigator.clipboard.writeText(quoteText.textContent);
+  alert("Copied!");
+};
+
+document.getElementById("favBtn").onclick = () => {
+  favorites.push(quoteText.textContent);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  displayFavorites();
+};
+
+function displayFavorites() {
+  favList.innerHTML = "";
+  favorites.forEach(f => {
+    let li = document.createElement("li");
+    li.textContent = f;
+    favList.appendChild(li);
+  });
 }
 
+categoryFilter.onchange = showQuote;
+
+displayFavorites();
 // Event listeners
 newQuoteBtn.addEventListener("click", getQuote);
 tweetBtn.addEventListener("click", tweetQuote);
